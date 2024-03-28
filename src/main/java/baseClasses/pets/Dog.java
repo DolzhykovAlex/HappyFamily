@@ -12,6 +12,11 @@ public class Dog extends Pet implements CanFoul {
     }
 
     @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
     public void respond() {
         System.out.println("Привіт, хазяїн. Твій собака" + this.getNickname() + " . Я скучив! Я хочу Гуляти !!!!!");
     }

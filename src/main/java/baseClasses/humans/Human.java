@@ -62,7 +62,6 @@ public class Human {
         return String.valueOf(stringBuilder.append("]"));
     }
 
-
     public boolean feedPet(boolean timeToFeed) {
         if (null == family.getPet()) {
             System.out.println("У мне нема тварини");

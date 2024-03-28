@@ -62,7 +62,6 @@ public abstract class Pet {
     }
 
 
-
     public Species getSpecies() {
         return species;
     }

@@ -29,7 +29,7 @@ public enum Species {
     public String toString() {
         return
                 enumNameToString +
-                        "canFly= " + canFly +
+                        " canFly= " + canFly +
                         ", hasFur= " + hasFur +
                         ", numberOfLegs= " + numberOfLegs;
     }

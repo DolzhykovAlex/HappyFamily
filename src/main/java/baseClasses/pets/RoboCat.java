@@ -2,11 +2,11 @@ package baseClasses.pets;
 
 import baseClasses.enums.Species;
 
-public class RoboCat extends Pet{
+public class RoboCat extends Pet {
 
 
-    public RoboCat( String nickname, int age, int trickLevel, String[] habits) {
-        super( nickname, age, trickLevel, habits);
+    public RoboCat(String nickname, int age, int trickLevel, String[] habits) {
+        super(nickname, age, trickLevel, habits);
         this.setSpecies(Species.ROBOCAT);
     }
 
