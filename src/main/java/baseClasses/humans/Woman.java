@@ -1,28 +1,32 @@
 package baseClasses.humans;
 
-public final class Woman extends Human{
+import baseClasses.pets.Pet;
+
+public final class Woman extends Human {
     public Woman(String name, String surname, int year, int iq) {
         super(name, surname, year, iq);
     }
+
     public Woman(String name, String surname, int year, int iq, String[] schedule) {
-        super(name, surname, year, iq, schedule);
+        super(name, surname, year, iq);
     }
 
     @Override
     public void greetPet() {
-        if (null ==  getFamily().getPet()) System.out.println("I don`n have pet ((( ");
-        else System.out.println("Привіт, " + getFamily().getPet().getNickname()+  "Це я твоя власниця "+ getName());
+        if (family.checkPet())
+            for (Pet x : this.family.getPets())
+                System.out.println("Привіт, " + x.getNickname() + "Це я твоя власниця " + getName());
     }
 
     @Override
     public void describePet() {
-        if (null == getFamily().getPet()) System.out.println("I don`n have pet ((( ");
-        else
-            System.out.println("У мене є " + getFamily().getPet().getSpecies() + " їй " +  getFamily().getPet().getAge() + " років, він " + getFamily().getPet().trickLevelCheck());
+        if (family.checkPet())
+            for (Pet x : this.family.getPets())
+                System.out.println("У мене є " + x.getSpecies() + " їй " + x.getAge() + " років, він " + x.trickLevelCheck());
 
     }
 
-    public void goToBeautyCenter(){
+    public void goToBeautyCenter() {
         System.out.println("Добре відпочила ");
     }
 

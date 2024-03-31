@@ -2,7 +2,7 @@ package baseClasses.pets;
 
 import baseClasses.interfasesOfProgect.CanFoul;
 
-import java.util.Arrays;
+import java.util.HashSet;
 
 public class OtherPets extends Pet implements CanFoul {
 
@@ -18,7 +18,7 @@ public class OtherPets extends Pet implements CanFoul {
     }
 
 
-    public OtherPets(String speciesLocal, String nickname, int age, int trickLevel, int legs, boolean canFly, boolean hasFur, String[] habits, boolean canFoulCheck) {
+    public OtherPets(String speciesLocal, String nickname, int age, int trickLevel, int legs, boolean canFly, boolean hasFur, HashSet<String> habits, boolean canFoulCheck) {
         super(nickname, age, trickLevel, habits);
         this.speciesLocal = speciesLocal;
         this.legs = legs;
@@ -35,7 +35,7 @@ public class OtherPets extends Pet implements CanFoul {
                         + "', age= " + this.getAge()
                         + ", trickLevel= " + this.getTrickLevel()
                         + ", habits= "
-                        + Arrays.toString(this.getHabits())
+                        + getHabits()
                         + ", has species: canFly= " + canFly
                         + ", hasFur= " + hasFur
                         + ", numberOfLegs= " + legs

@@ -2,10 +2,7 @@ package baseClasses.interfasesOfProgect;
 
 import baseClasses.Family;
 import baseClasses.humans.Human;
-import baseClasses.humans.Man;
-import baseClasses.humans.Woman;
 
-import java.util.Random;
 
 public interface HumanCreator {
 

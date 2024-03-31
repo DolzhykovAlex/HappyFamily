@@ -1,28 +1,34 @@
 package baseClasses.humans;
 
-public final class Man extends Human{
+import baseClasses.pets.Pet;
+
+
+
+public final class Man extends Human {
     public Man(String name, String surname, int year, int iq) {
         super(name, surname, year, iq);
     }
+
     public Man(String name, String surname, int year, int iq, String[] schedule) {
-        super(name, surname, year, iq, schedule);
+        super(name, surname, year, iq);
     }
 
     @Override
     public void greetPet() {
-        if (null ==  getFamily().getPet()) System.out.println("I don`n have pet ((( ");
-        else System.out.println("Привіт, нарешті я вдома " + getFamily().getPet().getNickname());
+        if (family.checkPet())
+            for (Pet x : this.family.getPets())
+                System.out.println("Привіт, нарешті я вдома " + x.getNickname());
+
     }
 
     @Override
     public void describePet() {
-        if (null == getFamily().getPet()) System.out.println("I don`n have pet ((( ");
-        else
-            System.out.println("У мене є " + getFamily().getPet().getSpecies() + " їй " +  getFamily().getPet().getAge() + " років, він " + getFamily().getPet().trickLevelCheck());
-
+        if (family.checkPet())
+            for (Pet x : this.family.getPets())
+                System.out.println("У мене є " + x.getSpecies().getEnumValueToString().toLowerCase() + " їй " + x.getAge() + " років, він " + x.trickLevelCheck());
     }
 
-    public void goFishing(){
+    public void goFishing() {
         System.out.println("Чомусь цей метод нічого не повертає (((((((( ");
     }
 

@@ -3,11 +3,13 @@ package baseClasses.pets;
 import baseClasses.enums.Species;
 import baseClasses.interfasesOfProgect.CanFoul;
 
+import java.util.HashSet;
+
 public class DomesticCat extends Pet implements CanFoul {
 
 
-    public DomesticCat( String nickname, int age, int trickLevel, String[] habits) {
-        super( nickname, age, trickLevel, habits);
+    public DomesticCat(String nickname, int age, int trickLevel, HashSet<String> habits) {
+        super(nickname, age, trickLevel, habits);
         this.setSpecies(Species.DOMESTICCAT);
     }
 

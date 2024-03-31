@@ -2,8 +2,11 @@ package baseClasses.pets;
 
 import baseClasses.enums.Species;
 
-import java.util.Arrays;
+
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public abstract class Pet {
 
@@ -12,10 +15,10 @@ public abstract class Pet {
     private String nickname;
     private int age;
     private int trickLevel;
-    private String[] habits;
+    private Set<String> habits;
 
 
-    public Pet(String nickname, int age, int trickLevel, String[] habits) {
+    public Pet(String nickname, int age, int trickLevel, HashSet<String> habits) {
         this.species = Species.UNKNOWN;
         this.nickname = nickname;
         this.age = age;
@@ -37,11 +40,13 @@ public abstract class Pet {
         return Objects.hash(species, nickname, age);
     }
 
-    public String[] getHabits() {
+    public Set<String> getHabits() {
+        if (habits.isEmpty())
+            return new HashSet<>(Collections.singletonList("No habits yet"));
         return habits;
     }
 
-    public void setHabits(String[] habits) {
+    public void setHabits(HashSet<String> habits) {
         this.habits = habits;
     }
 
@@ -50,15 +55,13 @@ public abstract class Pet {
         System.out.println("Я ї'м!");
     }
 
-    public void respond() {
-        System.out.println("Привіт, хазяїн. Я -" + nickname + " . Я скучив!");
-    }
+    public abstract void respond();
 
 
     public String trickLevelCheck() {
         if (trickLevel > 50)
-            return "very cunning";
-        return "almost not cunning";
+            return "дуже хитрий";
+        return "майже не хитрий";
     }
 
 
@@ -99,11 +102,11 @@ public abstract class Pet {
     public String toString() {
         return
                 species.getEnumValueToString()
-                        + "( nickname='" + nickname
+                        + " (nickname='" + nickname
                         + "', age=" + age
                         + ", trickLevel=" + trickLevel
                         + ", habits= "
-                        + Arrays.toString(habits)
+                        + this.getHabits()
                         + ", has species: "
                         + this.species
                         + ")";
