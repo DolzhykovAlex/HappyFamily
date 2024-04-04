@@ -11,19 +11,7 @@ import baseClasses.pets.Pet;
 import java.util.*;
 
 public class Family implements HumanCreator {
-    @Override
-    public Human bornChild(Family family) {
-        Random random = new Random();
-        int iq = (family.getFather().getIq() + family.getMother().getIq()) / 2;
-        int sex = random.nextInt(101);
-        if (sex < 50) {
-            String name = NAMES_MAN[random.nextInt(NAMES_MAN.length)];
-            return new Man(name, family.getFather().getSurname(), 0, iq);
-        } else {
-            String name = NAMES_WOMAN[random.nextInt(NAMES_WOMAN.length)];
-            return new Woman(name, family.getFather().getSurname(), 0, iq);
-        }
-    }
+
 
 
     private Human mother;
@@ -59,6 +47,20 @@ public class Family implements HumanCreator {
     }
 
     @Override
+    public Human bornChild(Family family) {
+        Random random = new Random();
+        int iq = (family.getFather().getIq() + family.getMother().getIq()) / 2;
+        int sex = random.nextInt(101);
+        if (sex < 50) {
+            String name = NAMES_MAN[random.nextInt(NAMES_MAN.length)];
+            return new Man(name, family.getFather().getSurname(), 0, iq);
+        } else {
+            String name = NAMES_WOMAN[random.nextInt(NAMES_WOMAN.length)];
+            return new Woman(name, family.getFather().getSurname(), 0, iq);
+        }
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(mother, father);
     }
@@ -71,7 +73,7 @@ public class Family implements HumanCreator {
                 .append("father= ").append(father.getName()).append(" ").append(father.getSurname());
         if (!children.isEmpty()) {
             for (Human child : children)
-                stringBuilder.append(", Child= ").append(child.getName()).append(" ").append(child.getSurname()).append(" Age= ").append(child.getYear());
+                stringBuilder.append(", Child= ").append(child.getName()).append(" ").append(child.getSurname()).append(" Age= ").append(child.getBirthDate());
         } else stringBuilder.append(", NO children");
         if (pets.isEmpty()) stringBuilder.append(", NO PET.");
         else for (Object x : pets)
@@ -106,7 +108,7 @@ public class Family implements HumanCreator {
         for (Human h : this.children) {
             System.out.println("Name= '" + h.getName()
                     + "' Surname= '" + h.getSurname()
-                    + "', age = " + h.getYear()
+                    + "', age = " + h.getBirthDate()
                     + ", IQ= " + h.getIq());
             System.out.println(h.getClass());
         }

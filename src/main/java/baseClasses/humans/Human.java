@@ -12,7 +12,7 @@ public class Human {
 
     private String name;
     private String surname;
-    private int year;
+    private long birthDate;
     private int iq;
     Family family;
     private Map<DayOfWeek, String> schedule = new HashMap<>();
@@ -31,40 +31,42 @@ public class Human {
     }
 
 
-    public Human(String name, String surname, int year, int iq) {
+    public Human(String name, String surname, long birthDate, int iq) {
         this.name = name;
         this.surname = surname;
-        this.year = year;
+        this.birthDate = birthDate;
         this.iq = iq;
     }
 
-    public Human(String name, String surname, int year, int iq, HashMap<DayOfWeek, String> map) {
+    public Human(String name, String surname, long birthDate, int iq, HashMap<DayOfWeek, String> map) {
         this.name = name;
         this.surname = surname;
-        this.year = year;
+        this.birthDate = birthDate;
         this.iq = iq;
         this.schedule = map;
 
     }
+
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Human human = (Human) o;
-        return year == human.year && Objects.equals(name, human.name) && Objects.equals(surname, human.surname);
+        return birthDate == human.birthDate && Objects.equals(name, human.name) && Objects.equals(surname, human.surname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, year);
+        return Objects.hash(name, surname, birthDate);
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Name= '").append(name).append("' surname= '")
-                .append(surname).append("', year= ").append(year).append(", IQ= ").append(iq).append(", schedule=").append(" [");
+                .append(surname).append("', birthDate= ").append(UtilsHuman.parseDateFromLongToString(birthDate)).append(", IQ= ").append(iq).append(", schedule=").append(" [");
         for (DayOfWeek x : DayOfWeek.values()) {
             String s = String.format("\n  Task for   %9s = '%s' ", x.getEnumValueToString(), schedule.get(x));
             stringBuilder.append(s);
@@ -117,12 +119,12 @@ public class Human {
         this.surname = surname;
     }
 
-    public int getYear() {
-        return year;
+    public long getBirthDate() {
+        return birthDate;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setBirthDate(long birthDate) {
+        this.birthDate = birthDate;
     }
 
     public int getIq() {
@@ -147,9 +149,13 @@ public class Human {
         }
     }
 
+
+
     public void printSchedule() {
         for (DayOfWeek x : DayOfWeek.values()) {
             System.out.printf("Task for   %9s = '%s' \n", x.getEnumValueToString(), schedule.get(x));
         }
     }
+
+
 }

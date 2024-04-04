@@ -1,15 +1,12 @@
 import baseClasses.Family;
-import baseClasses.enums.Species;
 import baseClasses.humans.Human;
 import baseClasses.humans.Man;
 import baseClasses.humans.Woman;
 import baseClasses.pets.Dog;
-import baseClasses.pets.DomesticCat;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -178,8 +175,8 @@ public class FamilyTest {
 
     @Test
     void equalsNegativeTest() {
-        Human child3M = new Human("Dim", "Max", 2022, 10);
-        Human child5M = new Human("Dima", "Maxi", 2020, 10);
+        Man child3M = new Man("Dim", "Max", 2022, 10);
+        Man child5M = new Man("Dima", "Maxi", 2020, 10);
         Human expectedHuman = new Human("Dima", "Max", 2022, 10);
         Family family = new Family(child3M, expectedHuman);
         Family family1 = new Family(child5M, expectedHuman, new HashSet<>());

@@ -3,12 +3,16 @@ package baseClasses.humans;
 import baseClasses.pets.Pet;
 
 public final class Woman extends Human {
-    public Woman(String name, String surname, int year, int iq) {
-        super(name, surname, year, iq);
+    public Woman(String name, String surname, long birthDate, int iq) {
+        super(name, surname, birthDate, iq);
     }
 
-    public Woman(String name, String surname, int year, int iq, String[] schedule) {
-        super(name, surname, year, iq);
+    public Woman(String name, String surname, String birthDate, int iq) {
+        super(name, surname, UtilsHuman.parseDateFromStringToLong(birthDate), iq);
+    }
+
+    public Woman(String name, String surname, long birthDate, int iq, String[] schedule) {
+        super(name, surname, birthDate, iq);
     }
 
     @Override

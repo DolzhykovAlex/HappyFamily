@@ -1,9 +1,6 @@
-import baseClasses.enums.DayOfWeek;
 import baseClasses.humans.Human;
 import baseClasses.humans.Man;
 import org.junit.jupiter.api.Test;
-
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,15 +9,15 @@ public class HumanTest {
 
     @Test
     public void toStringTest() {
-        String expected = new String("Name= 'Alex' surname= 'Bal', year= 1983, IQ= 180, schedule= [\n"
+        String expected ="Name= 'Alex' surname= 'Bal', birthDate= 21/05/1975, IQ= 180, schedule= [\n"
                 + "  Task for      Monday = ' Empty day' \n"
                 + "  Task for     Tuesday = ' Empty day' \n"
                 + "  Task for   Wednesday = ' Empty day' \n"
                 + "  Task for    Thursday = ' Empty day' \n"
                 + "  Task for      Friday = ' Empty day' \n"
                 + "  Task for    Saturday = ' Empty day' \n"
-                + "  Task for      Sunday = ' Empty day' ]");
-        Man human1M = new Man("Alex", "Bal", 1983, 180);
+                + "  Task for      Sunday = ' Empty day' ]";
+        Man human1M = new Man("Alex", "Bal", "21/05/1975", 180);
         assertEquals(expected, human1M.toString());
     }
 
