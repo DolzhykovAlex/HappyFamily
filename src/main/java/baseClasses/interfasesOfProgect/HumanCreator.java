@@ -1,6 +1,6 @@
 package baseClasses.interfasesOfProgect;
 
-import baseClasses.Family;
+import baseClasses.families.Family;
 import baseClasses.humans.Human;
 
 

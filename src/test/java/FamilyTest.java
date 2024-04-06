@@ -1,4 +1,4 @@
-import baseClasses.Family;
+import baseClasses.families.Family;
 import baseClasses.humans.Human;
 import baseClasses.humans.Man;
 import baseClasses.humans.Woman;

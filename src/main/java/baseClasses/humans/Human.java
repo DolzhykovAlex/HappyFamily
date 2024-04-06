@@ -1,7 +1,7 @@
 package baseClasses.humans;
 
 
-import baseClasses.Family;
+import baseClasses.families.Family;
 import baseClasses.enums.DayOfWeek;
 import baseClasses.pets.Pet;
 

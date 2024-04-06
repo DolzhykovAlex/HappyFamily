@@ -1,13 +1,15 @@
-package baseClasses;
+package baseClasses.families;
 
 
 import baseClasses.humans.Human;
 import baseClasses.humans.Man;
+import baseClasses.humans.UtilsHuman;
 import baseClasses.humans.Woman;
 import baseClasses.interfasesOfProgect.HumanCreator;
 import baseClasses.pets.Pet;
 
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Family implements HumanCreator {
@@ -18,6 +20,10 @@ public class Family implements HumanCreator {
     private Human father;
     private final ArrayList<Human> children = new ArrayList<>();
     private Set<Pet> pets = new HashSet<>();
+
+    public void setPets(Set<Pet> pets) {
+        this.pets = pets;
+    }
 
     public ArrayList<Human> getChildren() {
         return children;
@@ -53,10 +59,10 @@ public class Family implements HumanCreator {
         int sex = random.nextInt(101);
         if (sex < 50) {
             String name = NAMES_MAN[random.nextInt(NAMES_MAN.length)];
-            return new Man(name, family.getFather().getSurname(), 0, iq);
+            return new Man(name, family.getFather().getSurname(), System.currentTimeMillis()/1000, iq);
         } else {
             String name = NAMES_WOMAN[random.nextInt(NAMES_WOMAN.length)];
-            return new Woman(name, family.getFather().getSurname(), 0, iq);
+            return new Woman(name, family.getFather().getSurname(), System.currentTimeMillis()/1000, iq);
         }
     }
 
@@ -73,7 +79,8 @@ public class Family implements HumanCreator {
                 .append("father= ").append(father.getName()).append(" ").append(father.getSurname());
         if (!children.isEmpty()) {
             for (Human child : children)
-                stringBuilder.append(", Child= ").append(child.getName()).append(" ").append(child.getSurname()).append(" Age= ").append(child.getBirthDate());
+                stringBuilder.append(", Child= ").append(child.getName()).append(" ").append(child.getSurname()).append(" Age= ")
+                        .append(UtilsHuman.parseDateFromLongToString(child.getBirthDate()));
         } else stringBuilder.append(", NO children");
         if (pets.isEmpty()) stringBuilder.append(", NO PET.");
         else for (Object x : pets)
@@ -117,7 +124,7 @@ public class Family implements HumanCreator {
 
     public boolean deleteChild(int ind) {
         int n = children.size();
-        if ((n > ind) && (n != 0)) {
+        if ((n > ind) && (n != 0)&&(ind>=0)) {
             children.remove(ind);
             return true;
         }
