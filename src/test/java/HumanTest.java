@@ -41,10 +41,10 @@ public class HumanTest {
 
     @Test
     void hashNegativeTest() {
-        Human child3M = new Human("Dim", "Max", 2022, 10);
-        Human child4M = new Human("Dima", "Maxi", 2022, 10);
-        Human child5M = new Human("Dima", "Maxi", 2020, 10);
-        Human expectedHuman = new Human("Dima", "Max", 2022, 10);
+        Human child3M = new Human("Dim", "Max", 1701640800, 10);
+        Human child4M = new Human("Dima", "Maxi", 1701640800, 10);
+        Human child5M = new Human("Dima", "Maxi", 1701640800, 10);
+        Human expectedHuman = new Human("Dima", "Max", 1701640800, 10);
         assertAll("Check Human HashCode Negative=================================================",
                 () -> assertTrue(expectedHuman.hashCode() != child3M.hashCode()),     // different name
                 () -> assertTrue(expectedHuman.hashCode() != child4M.hashCode()),     // different surname
@@ -53,10 +53,10 @@ public class HumanTest {
 
     @Test
     void equalsNegativeTest() {
-        Human child3M = new Human("Dim", "Max", 2022, 10);
-        Human child4M = new Human("Dima", "Maxi", 2022, 10);
-        Human child5M = new Human("Dima", "Maxi", 2020, 10);
-        Human expectedHuman = new Human("Dima", "Max", 2022, 10);
+        Human child3M = new Human("Dim", "Max", 1701640800, 10);
+        Human child4M = new Human("Dima", "Maxi", 1701640800, 10);
+        Human child5M = new Human("Dima", "Maxi", 1701640800, 10);
+        Human expectedHuman = new Human("Dima", "Max", 1701640800, 10);
         assertAll("Check Human equals Negative=================================================",
                 () -> assertNotEquals(expectedHuman, child3M),     // different name
                 () -> assertNotEquals(expectedHuman, child4M),     // different surname

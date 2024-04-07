@@ -45,7 +45,7 @@ public class FamilyService {
         List<Family> ls = new ArrayList<>();
         for (Family f : familyDao.getAllFamilies()) {
             if (f.countFamily() > count) {
-                System.out.println("Family Bigger then= " + count + " {" + f + "}\n");
+                System.out.println("Family Bigger then= " + count + " peoples {" + f + "}\n");
                 ls.add(f);
             }
         }
@@ -56,7 +56,7 @@ public class FamilyService {
         List<Family> ls = new ArrayList<>();
         for (Family f : familyDao.getAllFamilies()) {
             if (f.countFamily() < count) {
-                System.out.println("Family Bigger then= " + count + " {" + f + "}\n");
+                System.out.println("Family Less then= " + count + " peoples  {" + f + "}\n");
                 ls.add(f);
             }
         }
@@ -72,7 +72,7 @@ public class FamilyService {
 
     public Family createNewFamily(Human mother, Human father) {
         Family family = new Family(mother, father);
-        System.out.println("Create new Family successful " + !familyDao.saveFamily(family));
+        System.out.println("This family was exist in the base= " + familyDao.saveFamily(family));
         return family;
     }
 
@@ -96,7 +96,6 @@ public class FamilyService {
     }
 
     public void deleteAllChildrenOlderThen(int age) {
-
         for (Family f : familyDao.getAllFamilies()) {
             for (int j = 0; j < f.getChildren().size(); j++) {
                 String dateInString = UtilsHuman.parseDateFromLongToString(f.getChildren().get(j).getBirthDate());

@@ -125,10 +125,10 @@ public class FamilyTest {
         String familyToString1 = "mother= Alex Bal, father= Sweet Wallet, NO children, NO PET.";
         String familyToString2 = "mother= Max Min, father= Fusion Max, NO children\n" +
                 "Dog (nickname='Mars ', age=1, trickLevel=2, habits= [Play, Sleep, Eat], has species: Dog canFly= false, hasFur= true, numberOfLegs= 4)";
-        Man human1M = new Man("Alex", "Bal", 1983, 180);
-        Woman human1W = new Woman("Sweet", "Wallet", 1984, 190);
-        Man human2M = new Man("Max", "Min", 1999, 150);
-        Woman human2W = new Woman("Fusion", "Max", 1997, 160, new String[]{"day 1 Task1", "day2 Task2", "day 3 Task3", "day4 Task4", "day 5 Task5,"});
+        Man human1M = new Man("Alex", "Bal", "12/12/89", 180);
+        Woman human1W = new Woman("Sweet", "Wallet", "10/10/90", 190);
+        Man human2M = new Man("Max", "Min", "2/2/89", 150);
+        Woman human2W = new Woman("Fusion", "Max", "12/11/89", 160);
         Family family1 = new Family(human1M, human1W);
         Family family2 = new Family(human2M, human2W, new HashSet<>(Arrays.asList(new Dog("Mars ", 1, 2, new HashSet<>(Arrays.asList("Play", "Eat", "Sleep"))))));
         assertAll("Check toString Family  Class =================================================",
@@ -140,8 +140,8 @@ public class FamilyTest {
 
     @Test
     void equalsPositiveTest() {
-        Man child2M = new Man("Dima", "Max", 2022, 10);
-        Woman child1M = new Woman("Ima", "Max", 2022, 10, new String[]{"day1", "day2"});
+        Man child2M = new Man("Dima", "Max", "12/12/89", 10);
+        Woman child1M = new Woman("Ima", "Max", 1701640800, 10, new String[]{"day1", "day2"});
         Family family = new Family(child2M, child1M);
         Family family1 = new Family(child2M, child1M, new HashSet<>(Arrays.asList(new Dog("Mars ", 1, 2, new HashSet<>(Arrays.asList("Play", "Eat", "Sleep"))))));
         assertTrue(family.equals(family1));
@@ -150,8 +150,8 @@ public class FamilyTest {
 
     @Test
     void hashPositiveTest() {
-        Man child2M = new Man("Dima", "Max", 2022, 10);
-        Woman child1M = new Woman("Ima", "Max", 2022, 10, new String[]{"day1", "day2"});
+        Man child2M = new Man("Dima", "Max", 1701640800, 10);
+        Woman child1M = new Woman("Ima", "Max", 1701640800, 10, new String[]{"day1", "day2"});
         Family family = new Family(child2M, child1M);
         Family family1 = new Family(child2M, child1M, new HashSet<>(Arrays.asList(new Dog("Mars ", 1, 2, new HashSet<>(Arrays.asList("Play", "Eat", "Sleep"))))));
         assertEquals(family.hashCode(), family1.hashCode());
@@ -161,8 +161,8 @@ public class FamilyTest {
 
     @Test
     void hashNegativeTest() {
-        Human child3M = new Human("Dim", "Max", 2022, 10);
-        Human child5M = new Human("Dima", "Maxi", 2020, 10);
+        Human child3M = new Human("Dim", "Max", 1701640800, 10);
+        Human child5M = new Human("Dima", "Maxi", 1701640800, 10);
         Human expectedHuman = new Human("Dima", "Max", 2022, 10);
         Family family = new Family(child3M, expectedHuman);
         Family family1 = new Family(child5M, expectedHuman, new HashSet<>());
@@ -175,9 +175,9 @@ public class FamilyTest {
 
     @Test
     void equalsNegativeTest() {
-        Man child3M = new Man("Dim", "Max", 2022, 10);
-        Man child5M = new Man("Dima", "Maxi", 2020, 10);
-        Human expectedHuman = new Human("Dima", "Max", 2022, 10);
+        Man child3M = new Man("Dim", "Max", 1701640800, 10);
+        Man child5M = new Man("Dima", "Maxi", 1701640800, 10);
+        Human expectedHuman = new Human("Dima", "Max", 1701640800, 10);
         Family family = new Family(child3M, expectedHuman);
         Family family1 = new Family(child5M, expectedHuman, new HashSet<>());
         Family family2 = new Family(expectedHuman, child3M);

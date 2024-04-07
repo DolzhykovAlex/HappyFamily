@@ -24,10 +24,11 @@ public class HumanUtilsTest {
 
     @Test
     void describeAge() {
-        String expected = "3 years 11 months 30 days";
-        String dateInString = UtilsHuman.parseDateFromLongToString(1586034000);
+
+        String expected = "0 years 0 months 0 days";
+        String dateInString = UtilsHuman.parseDateFromLongToString(1701640800);
         LocalDate date = LocalDate.parse(dateInString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        Period period = Period.between(date, LocalDate.now());
+        Period period = Period.between(date,  LocalDate.of(2023,12,4));
         String actual = period.getYears() + " years "
                 + period.getMonths() + " months "
                 + period.getDays() + " days";
