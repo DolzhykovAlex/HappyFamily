@@ -5,7 +5,6 @@ import baseClasses.humans.Woman;
 import baseClasses.interfasesOfProgect.Dao;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CollectionFamilyDao implements Dao<Family> {
