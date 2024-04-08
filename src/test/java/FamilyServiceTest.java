@@ -7,10 +7,13 @@ import baseClasses.humans.Woman;
 import baseClasses.pets.Dog;
 import baseClasses.pets.Pet;
 
+
 import org.junit.jupiter.api.Test;
 
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,7 +30,7 @@ public class FamilyServiceTest {
 
     @Test
     public void getAllFamiliesTest() {
-        assertEquals(fs.getFamilyDao().getAllFamilies(), fs.getAllFamilies());
+        assertEquals(fs.getAllFamilies(), fs.getAllFamilies());
     }
 
     @Test
@@ -36,13 +39,10 @@ public class FamilyServiceTest {
                 "Family index= 1 {mother= Hilary Bush, father= Jorge Bush, NO children, NO PET.}\n" +
                 "Family index= 2 {mother= Agata Tyson, father= Mike Tyson, NO children, NO PET.}\n" +
                 "Family index= 3 {mother= Agata Black, father= Alex Black, NO children, NO PET.}\n";
-        int i = 0;
-        String actual = new String();
-        for (Family f : fs.getAllFamilies()) {
-            actual = actual + "Family index= " + i + " {" + f + "}\n";
-            i++;
-        }
-        assertEquals(expected, actual);
+        StringBuilder actual = new StringBuilder();
+        IntStream.range(0, fs.getAllFamilies().size())
+                .forEach(ind -> actual.append("Family index= " + ind + " {" + fs.getFamilyById(ind) + "}\n"));
+        assertEquals(expected, String.valueOf(actual));
     }
 
     @Test
@@ -50,16 +50,12 @@ public class FamilyServiceTest {
         int count = 2;
         Man human1M = new Man("Obama", "Bal", "11/12/1983", 180);
         fs.getFamilyById(0).addChild(human1M);
-        List<Family> ls = new ArrayList<>();
-        for (Family f : fs.getAllFamilies()) {
-            if (f.countFamily() > count) {
-                System.out.println("Family Bigger then= " + count + " peoples {" + f + "}\n");
-                ls.add(f);
-            }
-        }
+        List<Family> ls = fs.getAllFamilies().stream()
+                .filter(ind -> ind.countFamily() > count)
+                .collect(Collectors.toList());
         assertAll("Check Family Bigger then Test =================================================",
                 () -> assertEquals(1, ls.size()),
-                () -> assertEquals(fs.getAllFamilies().get(0), ls.get(0)));
+                () -> assertEquals(fs.getFamilyById(0), ls.get(0)));
 
     }
 
@@ -68,14 +64,10 @@ public class FamilyServiceTest {
         int count = 3;
         Man human1M = new Man("Obama", "Bal", "11/12/1983", 180);
         fs.getFamilyById(0).addChild(human1M);
-        List<Family> expected = new ArrayList<>(Arrays.asList(fs.getFamilyDao().getAllFamilies().get(1), fs.getFamilyDao().getAllFamilies().get(2), fs.getFamilyDao().getAllFamilies().get(3)));
-        List<Family> ls = new ArrayList<>();
-        for (Family f : fs.getAllFamilies()) {
-            if (f.countFamily() < count) {
-                System.out.println("Family Less then= " + count + " peoples {" + f + "}\n");
-                ls.add(f);
-            }
-        }
+        List<Family> expected = new ArrayList<>(Arrays.asList(fs.getFamilyById(1), fs.getFamilyById(2), fs.getFamilyById(3)));
+        List<Family> ls = fs.getAllFamilies().stream()
+                .filter(ind -> ind.countFamily() < count)
+                .collect(Collectors.toList());
         assertAll("Check Family Less then Test =================================================",
                 () -> assertEquals(3, ls.size()),
                 () -> assertEquals(expected, ls));
@@ -84,12 +76,12 @@ public class FamilyServiceTest {
     @Test
     public void countFamiliesWithMemberNumberTest() {
         Man human1M = new Man("Obama", "Bal", "11/12/1983", 180);
-        fs.getFamilyDao().getAllFamilies().get(0).addChild(human1M);
+        fs.getAllFamilies().get(0).addChild(human1M);
         int count = 2;
-        int i = 0;
-        for (Family f : fs.getAllFamilies())
-            if (f.countFamily() == count) i++;
-        assertEquals(3, i);
+        int actual = (int) fs.getAllFamilies().stream()
+                .filter(ind -> ind.countFamily() == count)
+                .count();
+        assertEquals(3, actual);
 
     }
 

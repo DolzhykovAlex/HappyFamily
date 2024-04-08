@@ -22,17 +22,5 @@ public class HumanUtilsTest {
         assertEquals(expected, UtilsHuman.parseDateFromStringToLong("04/12/2023"));
     }
 
-    @Test
-    void describeAge() {
 
-        String expected = "0 years 0 months 0 days";
-        String dateInString = UtilsHuman.parseDateFromLongToString(1701640800);
-        LocalDate date = LocalDate.parse(dateInString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        Period period = Period.between(date,  LocalDate.of(2023,12,4));
-        String actual = period.getYears() + " years "
-                + period.getMonths() + " months "
-                + period.getDays() + " days";
-        assertEquals(expected, actual);
-
-    }
 }

@@ -5,6 +5,9 @@ import baseClasses.families.Family;
 import baseClasses.enums.DayOfWeek;
 import baseClasses.pets.Pet;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Human {
@@ -46,7 +49,6 @@ public class Human {
         this.schedule = map;
 
     }
-
 
 
     @Override
@@ -142,19 +144,27 @@ public class Human {
         for (DayOfWeek day : DayOfWeek.values()) {
             System.out.print("Enter your task for ");
             System.out.println(day.getEnumValueToString());
-            s=scanner.nextLine();
+            s = scanner.nextLine();
             if (!s.isEmpty())
-            schedule.put(day, s);
+                schedule.put(day, s);
             else schedule.put(day, "Empty day");
         }
     }
-
 
 
     public void printSchedule() {
         for (DayOfWeek x : DayOfWeek.values()) {
             System.out.printf("Task for   %9s = '%s' \n", x.getEnumValueToString(), schedule.get(x));
         }
+    }
+
+    static public void describeAge(long dateIn) {
+        String dateInString = UtilsHuman.parseDateFromLongToString(dateIn);
+        LocalDate date = LocalDate.parse(dateInString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        Period period = Period.between(date, LocalDate.now());
+        System.out.println(period.getYears() + " years "
+                + period.getMonths() + " months "
+                + period.getDays() + " days");
     }
 
 
