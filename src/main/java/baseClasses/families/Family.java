@@ -3,7 +3,6 @@ package baseClasses.families;
 
 import baseClasses.humans.Human;
 import baseClasses.humans.Man;
-import baseClasses.humans.UtilsHuman;
 import baseClasses.humans.Woman;
 import baseClasses.interfasesOfProgect.HumanCreator;
 import baseClasses.pets.Pet;
@@ -12,7 +11,6 @@ import baseClasses.pets.Pet;
 import java.util.*;
 
 public class Family implements HumanCreator {
-
 
 
     private Human mother;
@@ -58,10 +56,10 @@ public class Family implements HumanCreator {
         int sex = random.nextInt(101);
         if (sex < 50) {
             String name = NAMES_MAN[random.nextInt(NAMES_MAN.length)];
-            return new Man(name, family.getFather().getSurname(), System.currentTimeMillis()/1000, iq);
+            return new Man(name, family.getFather().getSurname(), System.currentTimeMillis() / 1000, iq);
         } else {
             String name = NAMES_WOMAN[random.nextInt(NAMES_WOMAN.length)];
-            return new Woman(name, family.getFather().getSurname(), System.currentTimeMillis()/1000, iq);
+            return new Woman(name, family.getFather().getSurname(), System.currentTimeMillis() / 1000, iq);
         }
     }
 
@@ -73,18 +71,7 @@ public class Family implements HumanCreator {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("mother= ").append(mother.getName()).append(" ").append(mother.getSurname()).append(", ")
-                .append("father= ").append(father.getName()).append(" ").append(father.getSurname());
-        if (!children.isEmpty()) {
-            for (Human child : children)
-                stringBuilder.append(", Child= ").append(child.getName()).append(" ").append(child.getSurname()).append(" Age= ")
-                        .append(UtilsHuman.parseDateFromLongToString(child.getBirthDate()));
-        } else stringBuilder.append(", NO children");
-        if (pets.isEmpty()) stringBuilder.append(", NO PET.");
-        else for (Object x : pets)
-            stringBuilder.append(new String("\n")).append(x);
-        return String.valueOf(stringBuilder);
+        return prettyFormat();
     }
 
     public void addChild(Human child) {
@@ -123,7 +110,7 @@ public class Family implements HumanCreator {
 
     public boolean deleteChild(int ind) {
         int n = children.size();
-        if ((n > ind) && (n != 0)&&(ind>=0)) {
+        if ((n > ind) && (n != 0) && (ind >= 0)) {
             children.remove(ind);
             return true;
         }
@@ -150,4 +137,26 @@ public class Family implements HumanCreator {
             return false;
         }
     }
+
+    public String prettyFormat() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n Family:" + "\n      father: ").append(father.prettyFormat()).append("\n      mother: ").append(mother.prettyFormat()).append("\n  children: \n");
+        if (children.isEmpty()) stringBuilder.append("          no children yet \n");
+        else
+            getChildren().forEach(human -> stringBuilder.append("          ").append(prettyChildren(human)));
+        stringBuilder.append("     pets:\n");
+        if (pets.isEmpty()) stringBuilder.append("          NO PET.");
+        else getPets().forEach(pet -> stringBuilder.append("          ").append(pet.prettyFormat()).append("\n"));
+        return String.valueOf(stringBuilder);
+    }
+
+    public String prettyChildren(Human human) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (human.getClass().equals(Man.class))
+            stringBuilder.append("Boy: ");
+        else stringBuilder.append("Girl: ");
+        stringBuilder.append(human.prettyFormat()).append("\n");
+        return String.valueOf(stringBuilder);
+    }
+
 }

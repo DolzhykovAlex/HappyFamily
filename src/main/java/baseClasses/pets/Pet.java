@@ -111,10 +111,13 @@ public abstract class Pet {
                         + this.species
                         + ")";
     }
+
+    public String prettyFormat() {
+        return species.name() + " (nickname='" + nickname + "', age=" + age + ", trickLevel=" +
+                trickLevel + ", habits= " + this.getHabits() + ")";
+
+    }
 }
-
-
-
 
 
 

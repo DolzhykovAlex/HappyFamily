@@ -22,7 +22,7 @@ public class Human {
 
     {
         for (DayOfWeek x : DayOfWeek.values())
-            this.schedule.put(x, " Empty day");
+            this.schedule.put(x, "Empty day");
     }
 
     private Map<DayOfWeek, String> getSchedule() {
@@ -158,7 +158,7 @@ public class Human {
         }
     }
 
-    static public void describeAge(long dateIn) {
+     public void describeAge(long dateIn) {
         String dateInString = UtilsHuman.parseDateFromLongToString(dateIn);
         LocalDate date = LocalDate.parse(dateInString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         Period period = Period.between(date, LocalDate.now());
@@ -167,5 +167,20 @@ public class Human {
                 + period.getDays() + " days");
     }
 
+    public String prettyFormat() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("{name='").append(name).append("', surname='")
+                .append(surname).append("', birthDate= ").append(UtilsHuman.parseDateFromLongToString(birthDate)).append(", IQ=").append(iq).append(", schedule=").append(" { ");
+        for (DayOfWeek x : DayOfWeek.values()) {
+            if (!schedule.get(x).equals("Empty day"))
+                stringBuilder.append(String.format("Task for %s = '%s',", x.getEnumValueToString(), schedule.get(x)));
+        }
+        return String.valueOf(stringBuilder.deleteCharAt(stringBuilder.length() - 1).append(" }}"));
+    }
+
+    public void setScheduleDay(DayOfWeek day,String string){
+        schedule.put(day,string);
+
+    }
 
 }
