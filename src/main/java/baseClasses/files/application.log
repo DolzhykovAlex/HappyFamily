@@ -1,0 +1,30 @@
+
+[DEBUG] 14/04/2024 17:34Load from file
+[DEBUG] 14/04/2024 17:36Load from file
+[DEBUG] 14/04/2024 17:36getAllFamilies
+[DEBUG] 14/04/2024 17:36getAllFamilies
+[DEBUG] 14/04/2024 17:36 try getFamilyByIndex0
+[DEBUG] 14/04/2024 17:36 try getFamilyByIndex1
+[DEBUG] 14/04/2024 17:36 try getFamilyByIndex2
+[DEBUG] 14/04/2024 17:36 try getFamilyByIndex3
+[DEBUG] 14/04/2024 17:36 try getFamilyByIndex4
+[DEBUG] 14/04/2024 17:38getAllFamilies
+[DEBUG] 14/04/2024 17:38getAllFamilies
+[DEBUG] 14/04/2024 17:38Load from file
+[DEBUG] 14/04/2024 17:40getAllFamilies
+[DEBUG] 14/04/2024 17:40Load from file
+[DEBUG] 14/04/2024 17:40getAllFamilies
+[DEBUG] 14/04/2024 17:40getAllFamilies
+[DEBUG] 14/04/2024 17:40 try getFamilyByIndex0
+[DEBUG] 14/04/2024 17:40 try getFamilyByIndex1
+[DEBUG] 14/04/2024 17:40 try getFamilyByIndex2
+[DEBUG] 14/04/2024 17:40 try getFamilyByIndex3
+[DEBUG] 14/04/2024 17:40 try getFamilyByIndex4
+[DEBUG] 14/04/2024 17:40getAllFamilies
+[DEBUG] 14/04/2024 17:40getAllFamilies
+[DEBUG] 14/04/2024 17:40getAllFamilies
+[DEBUG] 14/04/2024 17:41 try getFamilyByIndex2
+[DEBUG] 14/04/2024 17:41saveFamily Tyson
+[DEBUG] 14/04/2024 17:41getAllFamilies
+[DEBUG] 14/04/2024 17:41getAllFamilies
+[DEBUG] 14/04/2024 17:41Save to File src/main/java/baseClasses/files/DataBase.bin
