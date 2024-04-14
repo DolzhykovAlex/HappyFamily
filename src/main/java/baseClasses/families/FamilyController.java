@@ -4,6 +4,8 @@ import baseClasses.humans.Human;
 import baseClasses.pets.Pet;
 import exeptions.FamilyOverflowException;
 
+
+import java.io.IOException;
 import java.util.List;
 
 public class FamilyController {
@@ -47,7 +49,7 @@ public class FamilyController {
 
     public void bornChild(Family family, String manName, String womenName) {  //add exception
         try {
-             serviceFamily.bornChild(family, manName, womenName);
+            serviceFamily.bornChild(family, manName, womenName);
         } catch (FamilyOverflowException e) {
             System.out.println("Exception  " + e.getMessage());
         }
@@ -55,7 +57,7 @@ public class FamilyController {
 
     public void adoptChild(Family family, Human human) throws FamilyOverflowException {          //add exception
         try {
-             serviceFamily.adoptChild(family, human);
+            serviceFamily.adoptChild(family, human);
         } catch (FamilyOverflowException e) {
             System.out.println("Exception  " + e.getMessage());
         }
@@ -80,5 +82,14 @@ public class FamilyController {
     public void fillBase() {
         serviceFamily.fillBase();
     }
+
+    public void loadData(List<Family> families) throws IOException {
+        serviceFamily.loadData(families);
+    }
+
+    public void uploadData() throws IOException {
+        serviceFamily.uploadData();
+    }
+
 
 }

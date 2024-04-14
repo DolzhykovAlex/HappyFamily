@@ -8,9 +8,10 @@ import baseClasses.interfasesOfProgect.HumanCreator;
 import baseClasses.pets.Pet;
 
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Family implements HumanCreator {
+public class Family implements HumanCreator , Serializable {
 
 
     private Human mother;

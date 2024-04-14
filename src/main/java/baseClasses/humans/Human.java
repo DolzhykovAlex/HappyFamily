@@ -5,12 +5,13 @@ import baseClasses.families.Family;
 import baseClasses.enums.DayOfWeek;
 import baseClasses.pets.Pet;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class Human {
+public class Human implements Serializable {
 
 
     private String name;

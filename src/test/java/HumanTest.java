@@ -15,13 +15,13 @@ public class HumanTest {
     @Test
     public void toStringTest() {
         String expected = "Name= 'Alex' surname= 'Bal', birthDate= 21/05/1975, IQ= 180, schedule= [\n"
-                + "  Task for      Monday = ' Empty day' \n"
-                + "  Task for     Tuesday = ' Empty day' \n"
-                + "  Task for   Wednesday = ' Empty day' \n"
-                + "  Task for    Thursday = ' Empty day' \n"
-                + "  Task for      Friday = ' Empty day' \n"
-                + "  Task for    Saturday = ' Empty day' \n"
-                + "  Task for      Sunday = ' Empty day' ]";
+                + "  Task for      Monday = 'Empty day' \n"
+                + "  Task for     Tuesday = 'Empty day' \n"
+                + "  Task for   Wednesday = 'Empty day' \n"
+                + "  Task for    Thursday = 'Empty day' \n"
+                + "  Task for      Friday = 'Empty day' \n"
+                + "  Task for    Saturday = 'Empty day' \n"
+                + "  Task for      Sunday = 'Empty day' ]";
         Man human1M = new Man("Alex", "Bal", "21/05/1975", 180);
         assertEquals(expected, human1M.toString());
     }

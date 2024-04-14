@@ -23,9 +23,7 @@ public class FamilyServiceTest {
 
     private final FamilyService fs = new FamilyService();
 
-    public FamilyServiceTest() {
-        new CollectionFamilyDao();
-    }
+
 
 
     @Test

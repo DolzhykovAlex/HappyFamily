@@ -7,6 +7,7 @@ import baseClasses.humans.UtilsHuman;
 import baseClasses.humans.Woman;
 import baseClasses.interfasesOfProgect.Dao;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -135,15 +136,15 @@ public class FamilyService {
     }
 
     public void fillBase() {
-        Dog dog= new Dog("Spin",4,34,new HashSet<>(Arrays.asList("sleep","eat")));
-        DomesticCat cat= new DomesticCat("Black",4,34,new HashSet<>(Arrays.asList("sleep","eat")));
+        Dog dog = new Dog("Spin", 4, 34, new HashSet<>(Arrays.asList("sleep", "eat")));
+        DomesticCat cat = new DomesticCat("Black", 4, 34, new HashSet<>(Arrays.asList("sleep", "eat")));
 
         Man human1M = new Man("Obama", "Bal", 234234, 180);
-        human1M.setScheduleDay(DayOfWeek.MONDAY,"FOOTbAll");
-        human1M.setScheduleDay(DayOfWeek.SUNDAY,"Tennis");
+        human1M.setScheduleDay(DayOfWeek.MONDAY, "FOOTbAll");
+        human1M.setScheduleDay(DayOfWeek.SUNDAY, "Tennis");
         Woman human1W = new Woman("Sweet", "Bal", "11/11/1983", 190);
-        human1W.setScheduleDay(DayOfWeek.MONDAY,"swimming");
-        human1W.setScheduleDay(DayOfWeek.SUNDAY,"Cafe");
+        human1W.setScheduleDay(DayOfWeek.MONDAY, "swimming");
+        human1W.setScheduleDay(DayOfWeek.SUNDAY, "Cafe");
         Family family1 = new Family(human1W, human1M);
         Man human2M = new Man("Jorge", "Bush", "10/10/1983", 140);
         Woman human2W = new Woman("Hilary", "Bush", "9/5/1986", 170);
@@ -160,6 +161,14 @@ public class FamilyService {
         familyDao.saveFamily(family2);
         familyDao.saveFamily(family3);
         familyDao.saveFamily(family4);
+    }
+
+    public void loadData(List<Family> families) throws IOException {
+        familyDao.loadData(families);
+    }
+
+    public void uploadData()  {
+          familyDao.uploadData();
     }
 
 

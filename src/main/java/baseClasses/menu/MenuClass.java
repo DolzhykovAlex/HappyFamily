@@ -6,11 +6,12 @@ import baseClasses.humans.Man;
 import baseClasses.humans.UtilsHuman;
 import baseClasses.humans.Woman;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
 public class MenuClass {
-    static final String[] mainMenu = {"1. Заповнити базу тестовими даними.",
+    static final String[] mainMenu = {"1. Завантажити базу з файлу",
             "2. Відобразити весь список сімей.",
             "3. Відобразити список сімей, де кількість людей більша за задану.",
             "4. Відобразити список сімей, де кількість людей менша за задану.",
@@ -19,7 +20,8 @@ public class MenuClass {
             "7. Видалити сім'ю за індексом із загального списку.",
             "8. Редагувати сім'ю за індексом із загального списку(додати дитину).",
             "9. Видалити всіх дітей старше заданного віку.",
-            "10.Вихід."};
+            "10.Зберегти базу в файл.",
+            "11.Вихід"};
 
     static final String[] newFamily = {"\n Запитати ім'я матері",
             "\nВведіть прізвище матері",
@@ -34,7 +36,7 @@ public class MenuClass {
             "\nВведіть рік народження батька",
             "\nВведіть iq батька"};
 
-    static public void mainManu() {
+    static public void mainManu() throws IOException {
         FamilyController fc = new FamilyController();
         System.out.println();
         boolean powerON = true;
@@ -42,73 +44,80 @@ public class MenuClass {
             printMainMenu();
             System.out.println("Please enter number of menu".toUpperCase());
             int choice = getValueFromKeyboardInt(2);
-            if (choice > 10)
+            if (choice > 11)
                 System.out.println("Введено занадто велике число спробуйте ще раз");
             else {
                 answerMainManu(choice);
                 switch (choice) {
-                    case 1: {
-                        System.out.println("   Connect Test Database Done".toUpperCase());
-                        fc.fillBase();
-                        continue;
-                    }
-                    case 2: {
+                    case 1:
+                        System.out.println("Загрузка мз файла.".toUpperCase());
+                        fc.uploadData();
+                        break;
+
+                    case 2:
                         System.out.println("Display Database".toUpperCase());
                         if (dataBaseConnectCheck(fc))
                             fc.displayAllFamilies();
                         break;
-                    }
-                    case 3: {
+
+                    case 3:
                         System.out.println("Family bigger then entered".toUpperCase());
                         if (dataBaseConnectCheck(fc)) {
                             System.out.println("Enter number of people");
                             System.out.println(fc.getFamiliesBiggerThan(getValueFromKeyboardInt(2)));
                         }
                         break;
-                    }
-                    case 4: {
+
+                    case 4:
                         System.out.println("Family Less then entered".toUpperCase());
                         if (dataBaseConnectCheck(fc)) {
                             System.out.println("Enter number of people");
                             System.out.println(fc.getFamiliesLessThan(getValueFromKeyboardInt(2)));
                         }
                         break;
-                    }
-                    case 5: {
+
+                    case 5:
                         System.out.println("Count families with entered number of peoples".toUpperCase());
                         if (dataBaseConnectCheck(fc)) {
                             System.out.println("Enter number of people");
                             System.out.println("Amount of families = " + fc.countFamiliesWithMemberNumber(getValueFromKeyboardInt(2)));
                         }
                         break;
-                    }
-                    case 6: {
+
+                    case 6:
                         System.out.println("Create new family".toUpperCase());
                         Human[] humans = parentsInfo();
                         System.out.println("Created New Family--" + fc.createNewFamily(humans[0], humans[1]));
                         break;
-                    }
-                    case 7: {
+
+                    case 7:
                         System.out.println("Delete family with entered id".toUpperCase());
                         fc.deleteFamilyByIndex(getValueFromKeyboardInt(2) - 1);
                         break;
-                    }
-                    case 8: {
+
+                    case 8:
                         System.out.println("Refactor family (add child)".toUpperCase());
                         if (dataBaseConnectCheck(fc))
                             submenuAddChild(fc);
                         break;
-                    }
-                    case 9: {
+
+                    case 9:
                         System.out.println("Видалити всіх дітей старше заданного віку.".toUpperCase());
                         if (dataBaseConnectCheck(fc))
                             fc.deleteAllChildrenOlderThen(getValueFromKeyboardInt(2));
                         break;
-                    }
-                    case 10:
-                        powerON = false;
-                       
 
+                    case 10:
+                        System.out.println("Сохранение В файл.".toUpperCase());
+                        if (fc.count() == 0) {
+                            System.out.println("The base is empty. Are you sure save base");
+                            System.out.println("1- Save empty base\nElse number- Exit to main menu");
+                            if (getValueFromKeyboardInt(1) == 1) fc.loadData(fc.getAllFamilies());
+                        }else fc.loadData(fc.getAllFamilies());
+                        break;
+
+                    case 11:
+                        powerON = false;
                 }
             }
         }
